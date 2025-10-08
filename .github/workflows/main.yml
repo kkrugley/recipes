@@ -34,7 +34,7 @@ jobs:
       - name: Install dependencies
         run: npm install
       - name: Build
-        run: npm run build:gh
+        run: npm run build
         env:
           NODE_ENV: production
       - name: Setup Pages
