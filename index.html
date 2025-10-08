@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="ru">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Волшебный Горшочек</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ruslan+Display&family=Noto+Sans:wght@400;600&display=swap" rel="stylesheet">
+    <style>
+      body {
+        font-family: 'Noto Sans', sans-serif;
+        background-color: #2b160d;
+        background-image: radial-gradient(circle at center, #4a2a1e, #2b160d);
+        overflow-x: hidden;
+      }
+      .font-display {
+        font-family: 'Ruslan Display', cursive;
+      }
+      .text-shadow-3d {
+        text-shadow: 
+          0px 1px 0px #ab7a59,
+          0px 2px 0px #8a5a44,
+          0px 3px 0px #6a4a34,
+          0px 4px 5px rgba(0,0,0,0.5);
+      }
+      .button-3d {
+        position: relative;
+        border: none;
+        transition: all 0.1s ease-out;
+        box-shadow: 
+          inset 0 -6px 0 #8a5a44, 
+          0 4px 0 #1b0f08,
+          0 6px 8px rgba(0,0,0,0.6);
+      }
+      .button-3d:hover:not(:disabled) {
+        box-shadow: 
+          inset 0 -4px 0 #8a5a44, 
+          0 2px 0 #1b0f08,
+          0 4px 6px rgba(0,0,0,0.5);
+        transform: translateY(2px);
+      }
+       .button-3d:active:not(:disabled) {
+        box-shadow: 
+          inset 0 -2px 0 #8a5a44, 
+          0 1px 0 #1b0f08,
+          0 1px 2px rgba(0,0,0,0.4);
+        transform: translateY(4px);
+      }
+
+      /* --- ANIMATIONS & EFFECTS --- */
+      .ember-container {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        pointer-events: none;
+        overflow: hidden;
+        z-index: -1;
+      }
+      .ember {
+        position: absolute;
+        bottom: -20px;
+        background-color: rgba(231, 177, 0, 0.7);
+        border-radius: 50%;
+        animation: ember-rise 10s infinite linear;
+        filter: blur(3px);
+      }
+      @keyframes ember-rise {
+        0% { transform: translateY(0) translateX(0); opacity: 0; }
+        10% { opacity: 1; }
+        90% { opacity: 1; }
+        100% { transform: translateY(-100vh) translateX(var(--x-end)); opacity: 0; }
+      }
+      .drop-shadow-gold {
+        filter: drop-shadow(0 0 8px #e7b100);
+      }
+      @keyframes breathe {
+        0%, 100% { box-shadow: inset 0 -6px 0 #8a5a44, 0 4px 0 #1b0f08, 0 6px 8px rgba(0,0,0,0.6), 0 0 10px rgba(231, 177, 0, 0); }
+        50% { box-shadow: inset 0 -6px 0 #8a5a44, 0 4px 0 #1b0f08, 0 6px 8px rgba(0,0,0,0.6), 0 0 25px rgba(231, 177, 0, 0.7); }
+      }
+      .animate-breathe {
+        animation: breathe 3s ease-in-out infinite;
+      }
+      @keyframes fadeInUp {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      .animate-fadeInUp {
+        animation: fadeInUp 0.7s ease-out forwards;
+      }
+      @keyframes scaleIn {
+        from { opacity: 0; transform: scale(0.9); }
+        to { opacity: 1; transform: scale(1); }
+      }
+      .animate-scaleIn {
+        animation: scaleIn 0.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+      }
+    </style>
+  <script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "@google/genai": "https://aistudiocdn.com/@google/genai@^1.22.0"
+  }
+}
+</script>
+</head>
+  <body class="bg-gradient-to-br from-[#4a2a1e] to-[#2b160d]">
+    <div class="ember-container"></div>
+    <div id="root"></div>
+    <script type="module" src="/index.tsx"></script>
+    <script>
+      // Ember script
+      const container = document.querySelector('.ember-container');
+      const emberCount = 40;
+      for (let i = 0; i < emberCount; i++) {
+        const ember = document.createElement('div');
+        ember.className = 'ember';
+        const size = Math.random() * 8 + 2;
+        ember.style.width = `${size}px`;
+        ember.style.height = `${size}px`;
+        ember.style.left = `${Math.random() * 100}%`;
+        ember.style.animationDuration = `${Math.random() * 10 + 8}s`;
+        ember.style.animationDelay = `${Math.random() * 8}s`;
+        ember.style.setProperty('--x-end', `${Math.random() * 100 - 50}px`);
+        container.appendChild(ember);
+      }
+    </script>
+  </body>
+</html>
