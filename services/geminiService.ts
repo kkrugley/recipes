@@ -34,7 +34,7 @@ export const generateRecipe = async (ingredients: string[]): Promise<string> => 
         model: 'gemini-2.5-flash',
         contents: prompt,
     });
-    return response.text;
+    return response.text ?? "";
   } catch (error) {
     console.error("Error generating recipe with Gemini:", error);
     throw new Error("Духи предков не отвечают. Попробуйте воззвать к ним позже.");
