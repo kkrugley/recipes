@@ -24,7 +24,7 @@ export const IngredientManager: React.FC<IngredientManagerProps> = ({ ingredient
   return (
     <div>
       <label htmlFor="ingredient-input" className="block text-2xl font-semibold mb-4 text-center text-[#f5e5d3] text-shadow-md">
-        Что в твоем погребке?
+        Что в твоих закромах?
       </label>
       <div className="flex flex-col sm:flex-row gap-3">
         <input

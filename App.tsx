@@ -49,7 +49,7 @@ const App: React.FC = () => {
         <div className="max-w-3xl mx-auto">
           <section className="animate-fadeInUp text-center mb-10" style={{animationDelay: '300ms'}}>
             <p className="text-lg md:text-xl leading-relaxed text-[#d4c1ab]">
-              Что таится в ваших погребах? Поведайте, и Волшебный Горшочек подскажет, какое яство можно сотворить.
+              Расскажите, что у вас есть под рукой — я подскажу, что из этого приготовить!
             </p>
           </section>
 
