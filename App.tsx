@@ -22,8 +22,12 @@ const App: React.FC = () => {
     try {
       const result = await generateRecipe(ingredients);
       setRecipe(result);
-    } catch (e: any) {
-      setError(e.message || 'Что-то пошло не так на кухне предков.');
+    } catch (e: unknown) {
+      if (e instanceof Error) {
+        setError(e.message);
+      } else {
+        setError('Что-то пошло не так на кухне предков.');
+      }
     } finally {
       setIsLoading(false);
     }
