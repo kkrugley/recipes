@@ -1,8 +1,50 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
+import { VitePWA } from 'vite-plugin-pwa'
 
 // https://vitejs.dev/config/
 export default defineConfig({
-  plugins: [react()],
+  plugins: [
+    react(),
+    VitePWA({
+      registerType: 'autoUpdate',
+      includeAssets: ['icon.svg'],
+      manifest: {
+        name: "Волшебный Горшочек",
+        short_name: "Горшочек",
+        description: "Откройте секреты предков. Положите ингредиенты в волшебный горшочек, и Gemini явит вам старинные рецепты в новом обличии.",
+        theme_color: "#2b160d",
+        background_color: "#2b160d",
+        display: "standalone",
+        start_url: ".",
+        icons: [
+          {
+            src: 'icon.svg',
+            sizes: '192x192',
+            type: 'image/svg+xml',
+            purpose: 'any'
+          },
+          {
+            src: 'icon.svg',
+            sizes: '512x512',
+            type: 'image/svg+xml',
+            purpose: 'any'
+          },
+          {
+            src: 'icon.svg',
+            sizes: '192x192',
+            type: 'image/svg+xml',
+            purpose: 'maskable'
+          },
+          {
+            src: 'icon.svg',
+            sizes: '512x512',
+            type: 'image/svg+xml',
+            purpose: 'maskable'
+          }
+        ]
+      }
+    })
+  ],
   base: '/recipes/',
 })
