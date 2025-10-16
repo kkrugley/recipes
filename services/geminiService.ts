@@ -1,6 +1,6 @@
 import { GoogleGenAI } from "@google/genai";
 
-const ai = new GoogleGenAI({ apiKey: 'AIzaSyA0bBklp23aRbTNeO9aIhak_78l6RK8BNc' });
+const ai = new GoogleGenAI({ apiKey: 'GEMINI_API_KEY' });
 
 export const generateRecipe = async (ingredients: string[]): Promise<string> => {
   if (ingredients.length === 0) {
